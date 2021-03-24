@@ -13,13 +13,13 @@ local icons = require('theme.icons')
 -- Titus - Horizontal Tray
 local systray = wibox.widget.systray()
   systray:set_horizontal(true)
-  systray:set_base_size(20)
-  systray.forced_height = 20
+  systray:set_base_size(16)
+  systray.forced_height = 10
 
   -- Clock / Calendar 24h format
 -- local textclock = wibox.widget.textclock('<span font="Roboto Mono bold 9">%d.%m.%Y\n     %H:%M</span>')
 -- Clock / Calendar 12AM/PM fornat
-local textclock = wibox.widget.textclock('<span font="Roboto Mono 12">%I:%M %p</span>')
+local textclock = wibox.widget.textclock('<span font="Roboto Mono 8">%I:%M %p</span>')
 -- textclock.forced_height = 36
 
 -- Add a calendar (credits to kylekewley for the original code)
@@ -30,27 +30,8 @@ local month_calendar = awful.widget.calendar_popup.month({
 })
 month_calendar:attach(textclock)
 
-local clock_widget = wibox.container.margin(textclock, dpi(13), dpi(13), dpi(9), dpi(8))
+local clock_widget = wibox.container.margin(textclock, dpi(5), dpi(5), dpi(5), dpi(5))
 
-local add_button = mat_icon_button(mat_icon(icons.plus, dpi(24)))
-add_button:buttons(
-  gears.table.join(
-    awful.button(
-      {},
-      1,
-      nil,
-      function()
-        awful.spawn(
-          awful.screen.focused().selected_tag.defaultApp,
-          {
-            tag = _G.mouse.screen.selected_tag,
-            placement = awful.placement.bottom_right
-          }
-        )
-      end
-    )
-  )
-)
 
 -- Create an imagebox widget which will contains an icon indicating which layout we're using.
 -- We need one layoutbox per screen.
@@ -98,7 +79,7 @@ local TopPanel = function(s)
     {
       ontop = true,
       screen = s,
-      height = dpi(32),
+      height = dpi(24),
       width = s.geometry.width,
       x = s.geometry.x,
       y = s.geometry.y,
@@ -106,14 +87,14 @@ local TopPanel = function(s)
       bg = beautiful.background.hue_800,
       fg = beautiful.fg_normal,
       struts = {
-        top = dpi(32)
+        top = dpi(24)
       }
     }
     )
 
     panel:struts(
       {
-        top = dpi(32)
+        top = dpi(24)
       }
     )
 
@@ -123,13 +104,13 @@ local TopPanel = function(s)
         layout = wibox.layout.fixed.horizontal,
         -- Create a taglist widget
         TagList(s),
-        TaskList(s),
-        add_button
+        -- TaskList(s)
+        -- add_button
       },
       nil,
       {
         layout = wibox.layout.fixed.horizontal,
-        wibox.container.margin(systray, dpi(3), dpi(3), dpi(6), dpi(3)),
+        wibox.container.margin(systray, dpi(2), dpi(2), dpi(4), dpi(2)),
         -- Layout box
         LayoutBox(s),
         -- Clock

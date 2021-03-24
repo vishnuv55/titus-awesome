@@ -39,7 +39,7 @@ configuration {
 	hide-scrollbar:              "true";
 	margin:                      0px;
 	padding:                     0px;
-	font:            "Roboto medium 10";
+	font:            "Roboto medium 9";
 }
 
 window {
@@ -94,7 +94,7 @@ entry {
 	background-color: rgb(25, 41, 51);
 	vertical-align: 1;
 	padding:        12px;
-	font:            "Roboto medium 13";
+	font:            "Roboto medium 12";
 }
 
 element normal.normal {
